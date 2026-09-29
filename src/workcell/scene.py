@@ -1,8 +1,4 @@
-"""Builds the initial sketch of the Toy Car Production workcell in Swift.
-
-Just boxes: one for the conveyor, one pad per station where a robot will
-stand, and a few toy cars on the belt. Nothing moves.
-"""
+"""Builds the initial environment of the Toy Car Production workcell in Swift."""
 
 import spatialgeometry as sg
 from spatialmath import SE3

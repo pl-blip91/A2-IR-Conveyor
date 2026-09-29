@@ -1,4 +1,4 @@
-"""Tests for the Toy Car Production workcell sketch."""
+"""Tests for the Toy Car Production line."""
 
 import numpy as np
 import pytest

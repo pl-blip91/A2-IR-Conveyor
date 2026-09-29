@@ -51,10 +51,10 @@ class Station:
 
 # The loading and unloading (sorting) stations sit at the two ends of the belt.
 STATIONS = (
-    Station("load", "Loading", 0.0, +1, "Yaskawa Motoman MH5 (Lachlan)"),
-    Station("paint", "Spray painting", BELT_LENGTH / 3, -1, "Staubli TX60 (Pauras)"),
-    Station("label", "Logo / label", 2 * BELT_LENGTH / 3, +1, "FANUC M-10iA (Aarav)"),
-    Station("sort", "Sorting", BELT_LENGTH, -1, "UR3e (group)"),
+    Station("load", "Loading", 0.0, +1, "Yaskawa Motoman MH5"),
+    Station("paint", "Spray painting", BELT_LENGTH / 3, -1, "Staubli TX60"),
+    Station("label", "Logo / label", 2 * BELT_LENGTH / 3, +1, "FANUC M-10iA"),
+    Station("sort", "Sorting", BELT_LENGTH, -1, "UR3e"),
 )
 
 # (x along the belt, colour name or None if unpainted)
