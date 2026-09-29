@@ -1,7 +1,6 @@
 """Show the Toy Car Production workcell sketch in Swift.
 
-Usage (from the repository root, with your environment active)::
-
+    To Run:
     python src/main.py
 
 """
