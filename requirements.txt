@@ -1,0 +1,6 @@
+# ir-support-full installs ir-support, ir-support-extra-robots and ir-support-extra-parts.
+# Version checked against the 41013 Python environment (July 2026).
+ir-support-full==0.2.4
+
+# Testing
+pytest

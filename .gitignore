@@ -1,0 +1,37 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python caches and build artefacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+
+# Third-party toolboxes / packages (do not commit)
+roboticstoolbox-python/
+spatialmath-python/
+swift/
+ir_support/
+staubli_experimental/
+
+# Secrets / local config
+.env
+
+# OS / editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Generated output
+*.log
+*.mp4
+*.mov
