@@ -1,4 +1,4 @@
-"""Tests for the Toy Car Production line."""
+#Tests for the Toy Car Production line.
 
 import numpy as np
 import pytest
@@ -19,7 +19,8 @@ def _headless_swift():
 def test_stations_are_ordered_and_on_the_belt():
     xs = [s.x for s in cfg.STATIONS]
     assert xs == sorted(xs)
-    assert all(0 < x < cfg.BELT_LENGTH for x in xs)
+    # The sorting station is at the very end of the belt, so the ends are allowed.
+    assert all(0 <= x <= cfg.BELT_LENGTH for x in xs)
     assert [s.key for s in cfg.STATIONS] == ["load", "paint", "label", "sort"]
 
 
@@ -28,7 +29,8 @@ def test_robot_bases_face_the_belt():
         forward = s.robot_base.R[:, 0]
         assert forward[1] * s.side < 0
         assert abs(forward[0]) < 1e-9
-        assert s.robot_base.t[2] == pytest.approx(cfg.PAD_HEIGHT)
+        # A mobile robot (loading station) drives on the floor; the others stand on a pad.
+        assert s.robot_base.t[2] == pytest.approx(0.0 if s.mobile else cfg.PAD_HEIGHT)
 
 
 def test_pads_clear_the_belt_and_each_other():

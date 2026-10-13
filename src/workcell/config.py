@@ -20,6 +20,13 @@ PAD_HEIGHT = PAD_SIZE[2]
 PAD_OFFSET_Y = 0.5  # distance of each pad from the belt centre line
 PAD_COLOUR = (0.55, 0.55, 0.58, 1.0)  # all pads share one colour
 
+# --- Mobile robot dock (loading station) ------------------------------------
+# A mobile station has no pad: its robot drives on the floor and parks on a dock
+# marking this far from the belt centre line.
+DOCK_OFFSET_Y = 0.45
+DOCK_SIZE = (0.5, 0.5, 0.004)
+DOCK_COLOUR = (0.95, 0.80, 0.10, 1.0)
+
 # --- Toy cars (one box each) ------------------------------------------------
 CAR_SIZE = (0.20, 0.10, 0.06)
 UNPAINTED = (0.7, 0.7, 0.7, 1.0)
@@ -39,19 +46,27 @@ class Station:
     x: float  # position along the belt
     side: int  # +1: pad on the +y side of the belt, -1: on the -y side
     robot: str  # the robot planned for this pad (description only)
+    mobile: bool = False  # True: the robot drives on the floor and parks on a dock
 
     @property
     def robot_base(self) -> SE3:
-        """Pose for a robot standing on this pad, facing the belt."""
+        """Pose for a robot standing on this pad (or parked on the dock), facing the belt.
+
+        For a mobile station this is the floor pose of the mobile base (z = 0).
+        """
+        if self.mobile:
+            return SE3(self.x, self.side * DOCK_OFFSET_Y, 0.0) * SE3.Rz(-self.side * np.pi / 2)
         return (
             SE3(self.x, self.side * PAD_OFFSET_Y, PAD_HEIGHT)
             * SE3.Rz(-self.side * np.pi / 2)
         )
 
 
-# The loading and unloading (sorting) stations sit at the two ends of the belt.
+# The loading station is near the start of the belt and the unloading (sorting)
+# station sits at the far end. The loading robot is a Yaskawa MH5 on a TurtleBot3
+# Waffle: `x` is where the base parks at the middle belt slot (see loading_config).
 STATIONS = (
-    Station("load", "Loading", 0.0, +1, "Yaskawa Motoman MH5"),
+    Station("load", "Loading", 0.95, +1, "Yaskawa Motoman MH5 on TurtleBot3 Waffle", mobile=True),
     Station("paint", "Spray painting", BELT_LENGTH / 3, -1, "Staubli TX60"),
     Station("label", "Logo / label", 2 * BELT_LENGTH / 3, +1, "FANUC M-10iA"),
     Station("sort", "Sorting", BELT_LENGTH, -1, "UR3e"),

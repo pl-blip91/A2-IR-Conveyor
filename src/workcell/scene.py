@@ -21,9 +21,14 @@ def build_scene(env) -> dict:
         (0.15, 0.15, 0.17, 1.0),
     )
 
+    # Fixed stations get a pad; a mobile station gets a thin dock marking on the floor.
     pads = {
-        st.key: _box(
-            env, cfg.PAD_SIZE, (st.x, st.side * cfg.PAD_OFFSET_Y, cfg.PAD_HEIGHT / 2), cfg.PAD_COLOUR
+        st.key: (
+            _box(env, cfg.DOCK_SIZE, (st.x, st.side * cfg.DOCK_OFFSET_Y, cfg.DOCK_SIZE[2] / 2), cfg.DOCK_COLOUR)
+            if st.mobile
+            else _box(
+                env, cfg.PAD_SIZE, (st.x, st.side * cfg.PAD_OFFSET_Y, cfg.PAD_HEIGHT / 2), cfg.PAD_COLOUR
+            )
         )
         for st in cfg.STATIONS
     }
