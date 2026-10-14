@@ -18,7 +18,7 @@ The simulation coordinates conveyor movement, visual classification and safe tra
 | Member | Personally created robot model |
 |--------|--------------------------------|
 | Lachlan | Yaskawa Motoman MH5 |
-| Aarav | Stäubli TX60 |
+| Aarav | ABB IRB 5510 |
 | Pauras | FANUC M-10iA |
 
 Model assignments are provisional until confirmed with a tutor. Each personally assessed model must be a 6-DoF (or higher) industrial arm that does not already exist in the 41013 model packs or Peter Corke's Robotics Toolbox for Python, and is not a Universal Robots model.
