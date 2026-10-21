@@ -18,7 +18,7 @@ The simulation coordinates conveyor movement, visual classification and safe tra
 | Member | Personally created robot model |
 |--------|--------------------------------|
 | Lachlan | Yaskawa Motoman MH5 |
-| Aarav | Stäubli TX60 |
+| Aarav | Yaskawa Motoman MPX3500 |
 | Pauras | FANUC M-10iA |
 
 Model assignments are provisional until confirmed with a tutor. Each personally assessed model must be a 6-DoF (or higher) industrial arm that does not already exist in the 41013 model packs or Peter Corke's Robotics Toolbox for Python, and is not a Universal Robots model.
@@ -31,7 +31,7 @@ A UR3/UR3e (supplied in `ir_support`) will be used for sorting and as the repres
 
 Each student builds their own parameter-based (DH) model in Python and documents where the parameters came from. Sources to be confirmed as each model is built.
 
-### Stäubli TX60 (Aarav)
+### Yaskawa Motoman MPX3500 (Aarav)
 
 - **Kinematics (DH):** nominal modified-DH parameters are published in Table 2 of [Kinematics Parameter Calibration of Serial Industrial Robots Based on Partial Pose Measurement](https://www.mdpi.com/2227-7390/11/23/4802) (MDPI Mathematics, open access). Link lengths are 290 mm, 20 mm (elbow offset), 310 mm and 70 mm.
 - **Cross-check:** joint origins and limits in the ROS-Industrial URDF (`staubli_tx60_support/urdf`) in [ros-industrial/staubli_experimental](https://github.com/ros-industrial/staubli_experimental). The URDF also gives a 375 mm base-to-shoulder height that the paper's table does not include.
