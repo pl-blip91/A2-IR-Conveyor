@@ -1,4 +1,4 @@
-#Tests for the loading station: MH5 on a TurtleBot loading toy cars.
+"""Tests for the loading station: MH5 on a TurtleBot loading toy cars."""
 
 import math
 import struct
@@ -310,6 +310,10 @@ def test_phase_is_restored_after_resume_and_start_is_refused_while_pressed(stati
     with pytest.raises(RuntimeError):
         station.start()
     station.release_estop()
+    with pytest.raises(RuntimeError):  # released, but still latched: needs reset and resume
+        station.start()
+    assert station.reset() and station.resume()
+    assert station.run_state is RunState.IDLE
     station.start()
     for _ in range(100):
         station.tick()
@@ -320,3 +324,19 @@ def test_phase_is_restored_after_resume_and_start_is_refused_while_pressed(stati
     station.reset()
     station.resume()
     assert station.phase == phase
+
+
+@pytest.mark.parametrize("scenario", ["curtain", "obstacle", "estop", "all"])
+def test_scripted_safety_scenarios_run_to_completion(headless_env, scenario):
+    from loading_demo import run_demo
+
+    lines = []
+    assert run_demo(headless_env, cars=3, speed=4.0, log=lines.append, scenario=scenario) is RunState.DONE
+    text = "\n".join(lines)
+    expected = {
+        "curtain": ["person walks into the cell", "SAFETY STOP", "reset", "resume"],
+        "obstacle": ["obstacle dropped in the base's path", "steering round it"],
+        "estop": ["e-stop pressed", "e-stop released", "reset", "resume"],
+    }
+    for key in expected.get(scenario, sum(expected.values(), [])):
+        assert key in text, key
