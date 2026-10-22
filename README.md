@@ -34,9 +34,8 @@ Each student builds their own parameter-based (DH) model in Python and documents
 ### Yaskawa Motoman MPX3500 (Aarav)
 
 - **Kinematics (DH):** nominal modified-DH parameters are published in Table 2 of [Kinematics Parameter Calibration of Serial Industrial Robots Based on Partial Pose Measurement](https://www.mdpi.com/2227-7390/11/23/4802) (MDPI Mathematics, open access). Link lengths are 290 mm, 20 mm (elbow offset), 310 mm and 70 mm.
-- **Cross-check:** joint origins and limits in the ROS-Industrial URDF (`staubli_tx60_support/urdf`) in [ros-industrial/staubli_experimental](https://github.com/ros-industrial/staubli_experimental). The URDF also gives a 375 mm base-to-shoulder height that the paper's table does not include.
-- **Meshes:** STL visual and collision meshes (`base_link` and `link_1` to `link_6`) in `staubli_tx60_support/meshes/tx60/` of the same repository, licensed Apache-2.0. Keep the licence attribution if any meshes are copied into this repo.
-
+- **Cross-check:** joint origins and limits in the ROS-Industrial URDF macro file (motoman_mpx3500_support/urdf/mpx3500_macro.xacro) inside the ros-industrial/motoman repository.
+- **Meshes:** STL visual and collision meshes (base_link and link_1 to link_6) are located in the motoman_mpx3500_support/meshes/mpx3500/ directory of the same repository. They are licensed under Apache-2.0 / BSD-3-Clause. Keep the license attribution if any meshes are copied into your repository.
 ### Yaskawa Motoman MH5 (Lachlan)
 
 - **Kinematics:** joint origins, axes and limits in `motoman_mh5_support/urdf/mh5_macro.xacro` in [ros-industrial/motoman](https://github.com/ros-industrial/motoman). Link offsets are 330 mm (base to shoulder), 88 mm (shoulder offset), 310 mm (upper arm), 40 mm (elbow offset), 305 mm (forearm) and 80 mm (wrist to flange). Derive the DH table from these and cross-check against the basic specifications in the [Yaskawa MOTOMAN-MH5 instruction manual](https://www.manualslib.com/manual/1335625/Yaskawa-Motoman-Mh5.html).
@@ -100,7 +99,7 @@ This is an initial sketch made of plain boxes. Nothing moves yet and there are n
   | Station | Planned robot |
   |---------|---------------|
   | Loading | Yaskawa Motoman MH5 (Lachlan) |
-  | Spray painting | Stäubli TX60 (Aarav) |
+  | Spray painting | Yaskawa Motoman MPX3500 (Aarav) |
   | Logo / label | FANUC M-10iA (Pauras) |
   | Sorting | UR3e (group) |
 
