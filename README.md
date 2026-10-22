@@ -25,7 +25,7 @@ Model assignments are provisional until confirmed with a tutor. Each personally 
 
 A UR3/UR3e (supplied in `ir_support`) will be used for sorting and as the representative physical demonstration.
 
-**Real robot:** to be decided (UR3/UR3e proposed).
+**Real robot:** UR3e
 
 ## Robot model sources
 
@@ -92,7 +92,7 @@ A browser tab opens showing the Swift scene. Press Ctrl+C in the terminal to clo
 
 This is an initial sketch made of plain boxes. Nothing moves yet and there are no robots. It has:
 
-- **A conveyor:** one long box (6.4 m) along +x.
+- **A conveyor:** along +x.
 - **Four robot pads:** one box per station, alternating sides of the belt. The loading and sorting pads are at the two ends of the belt.
 
   | Station | Planned robot |
@@ -102,45 +102,9 @@ This is an initial sketch made of plain boxes. Nothing moves yet and there are n
   | Logo / label | FANUC M-10iA (Pauras) |
   | Sorting | UR3e (group) |
 
-- **Five toy cars:** small boxes on the belt (two unpainted, then red, green and blue). Positions and colours are set in `CARS` in `config.py`.
 
-All positions are in `src/workcell/config.py` (metres, +x along the belt, floor at z = 0).
-
-### Adding a robot
-
-When a robot model is ready, mount it on its pad:
-
-```python
-from workcell import config as cfg
-from workcell.scene import build_scene
-
-build_scene(env)
-robot = MyRobot(base=cfg.station("load").robot_base)  # keys: load, paint, label, sort
-robot.add_to_env(env)
-```
-
-`MyRobot` must accept a `base` pose argument, as the `ir_support` robot classes do. `robot_base` sits on top of the pad and faces the belt.
-
-Run the tests with `python -m pytest`.
 
 ### Known issues with the Swift environment
 
 - `ir-support` pins `swift-sim<2`, and Swift 1.1.0 crashes in `env.step()` with the newer `spatialgeometry` that pip installs. `src/workcell/compat.py` adds a small patch, applied automatically when `workcell` is imported. Import `workcell` before stepping any scene that you build yourself.
 - Do not call `env.remove(...)`: after a removal Swift 1.1.0's `env.step()` fails. Move or hide objects instead.
-
-## Repository layout
-
-```
-src/
-  main.py        show the workcell in Swift
-  workcell/      shared simulation
-    config.py      belt, pad and car sizes and positions
-    scene.py       builds the scene
-    compat.py      Swift compatibility patch
-  robots/        one module per student-created robot model
-  gui/           teach/jog interface and e-stop controls
-  safety/        e-stop state machine, light curtain, collision checks
-docs/            risk assessment, SWMS and notes
-tests/           unit tests
-```
-

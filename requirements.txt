@@ -1,6 +1,7 @@
-# ir-support-full installs ir-support, ir-support-extra-robots and ir-support-extra-parts.
-# Version checked against the 41013 Python environment (July 2026).
+# ir-support-full installs ir-support, ir-support-extra-robots (TurtleBot3) and ir-support-extra-parts, plus
+# roboticstoolbox-python, swift-sim, spatialmath-python, spatialgeometry and numpy.
 ir-support-full==0.2.4
-
-# Testing
-pytest
+scipy
+# Optional: hardware e-stop on a gamepad button (without it only the GUI e-stop is available)
+pygame
+# The teach pendant uses tkinter, which ships with Python (on Linux: sudo apt install python3-tk)
