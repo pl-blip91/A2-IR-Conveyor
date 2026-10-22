@@ -33,7 +33,6 @@ Each student builds their own parameter-based (DH) model in Python and documents
 
 ### Yaskawa Motoman MPX3500 (Aarav)
 
-- **Kinematics (DH):** nominal modified-DH parameters are published in Table 2 of [Kinematics Parameter Calibration of Serial Industrial Robots Based on Partial Pose Measurement](https://www.mdpi.com/2227-7390/11/23/4802) (MDPI Mathematics, open access). Link lengths are 290 mm, 20 mm (elbow offset), 310 mm and 70 mm.
 - **Cross-check:** joint origins and limits in the ROS-Industrial URDF macro file (motoman_mpx3500_support/urdf/mpx3500_macro.xacro) inside the ros-industrial/motoman repository.
 - **Meshes:** STL visual and collision meshes (base_link and link_1 to link_6) are located in the motoman_mpx3500_support/meshes/mpx3500/ directory of the same repository. They are licensed under Apache-2.0 / BSD-3-Clause. Keep the license attribution if any meshes are copied into your repository.
 ### Yaskawa Motoman MH5 (Lachlan)
